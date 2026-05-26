@@ -714,15 +714,11 @@ export default function Home() {
 
       {/* Modal - Loading */}
       {formStatus === 'loading' && (
-        <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 9999 }}>
-          <div className="modal-dialog modal-dialog-centered" role="document">
-            <div className="modal-content">
-              <div className="modal-body" style={{ textAlign: 'center', padding: '50px 0' }}>
-                <div className="spinner-border" style={{ width: '3rem', height: '3rem' }} role="status">
-                  <span className="sr-only">Loading...</span>
-                </div>
-              </div>
-            </div>
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300">
+          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 flex flex-col items-center max-w-xs w-full shadow-2xl text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-emerald-500/20 border-t-emerald-600 mb-4"></div>
+            <h5 className="text-zinc-900 dark:text-zinc-50 font-bold text-lg mb-1">Sending Request</h5>
+            <p className="text-zinc-500 dark:text-zinc-400 text-sm">Please wait a moment...</p>
           </div>
         </div>
       )}
@@ -730,24 +726,53 @@ export default function Home() {
       {/* Modal - Success */}
       {formStatus === 'success' && (
         <div
-          className="modal fade show"
-          style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 9999 }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300"
           onClick={() => setFormStatus('idle')}
         >
-          <div className="modal-dialog modal-dialog-centered" role="document" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-content" style={{ border: 'none' }}>
-              <div className="alert alert-success m-0" role="alert" style={{ textAlign: 'left' }}>
-                <div className="d-flex justify-content-between align-items-center mb-2">
-                  <h4 className="alert-heading m-0">Well done!</h4>
-                  <button type="button" className="close" onClick={() => setFormStatus('idle')} style={{ background: 'none', border: 'none', fontSize: '24px', lineHeight: 1 }}>
-                    <span>&times;</span>
-                  </button>
-                </div>
-                <p>You massage has been sent successfully.</p>
-                <hr />
-                <p className="mb-0">We will get back to you soon.</p>
-              </div>
+          <div
+            className="relative bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 max-w-md w-full shadow-2xl text-center transform scale-100 transition-transform duration-300 overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Top decorative gradient bar */}
+            <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-emerald-400 via-teal-500 to-emerald-600"></div>
+            
+            {/* Success Icon with glowing background */}
+            <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-500 mb-6 relative">
+              <span className="absolute inset-0 rounded-full bg-emerald-400/20 animate-ping duration-1000"></span>
+              <svg className="h-10 w-10 relative z-10" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
             </div>
+            
+            {/* Modal Heading */}
+            <h3 className="text-2xl font-black text-zinc-900 dark:text-zinc-50 mb-3 tracking-tight">
+              Request Sent Successfully!
+            </h3>
+            
+            {/* Modal Subtext */}
+            <p className="text-zinc-600 dark:text-zinc-400 text-base mb-8 leading-relaxed max-w-sm mx-auto">
+              Your message has been sent to our handyman team. We will review your request and get back to you shortly.
+            </p>
+            
+            {/* Action button */}
+            <button
+              onClick={() => setFormStatus('idle')}
+              style={{ backgroundColor: '#059669', color: '#ffffff', border: 'none' }}
+              className="w-full py-4 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-lg shadow-lg shadow-emerald-600/20 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              Great, thanks!
+            </button>
+            
+            {/* Close button icon in top right */}
+            <button
+              onClick={() => setFormStatus('idle')}
+              style={{ background: 'transparent', border: 'none' }}
+              className="absolute top-4 right-4 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
         </div>
       )}
@@ -755,24 +780,53 @@ export default function Home() {
       {/* Modal - Error */}
       {formStatus === 'error' && (
         <div
-          className="modal fade show"
-          style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 9999 }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300"
           onClick={() => setFormStatus('idle')}
         >
-          <div className="modal-dialog modal-dialog-centered" role="document" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-content" style={{ border: 'none' }}>
-              <div className="alert alert-warning m-0" role="alert" style={{ textAlign: 'left' }}>
-                <div className="d-flex justify-content-between align-items-center mb-2">
-                  <h4 className="alert-heading m-0">Well done!</h4>
-                  <button type="button" className="close" onClick={() => setFormStatus('idle')} style={{ background: 'none', border: 'none', fontSize: '24px', lineHeight: 1 }}>
-                    <span>&times;</span>
-                  </button>
-                </div>
-                <p>You massage has been sent successfully.</p>
-                <hr />
-                <p className="mb-0">We will get back to you soon.</p>
-              </div>
+          <div
+            className="relative bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 max-w-md w-full shadow-2xl text-center transform scale-100 transition-transform duration-300 overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Top decorative gradient bar */}
+            <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-rose-400 via-red-500 to-rose-600"></div>
+            
+            {/* Error Icon with glowing background */}
+            <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-rose-50 dark:bg-rose-950/30 text-rose-500 mb-6 relative">
+              <span className="absolute inset-0 rounded-full bg-rose-400/20 animate-pulse"></span>
+              <svg className="h-10 w-10 relative z-10" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+              </svg>
             </div>
+            
+            {/* Modal Heading */}
+            <h3 className="text-2xl font-black text-zinc-900 dark:text-zinc-50 mb-3 tracking-tight">
+              Submission Failed
+            </h3>
+            
+            {/* Modal Subtext */}
+            <p className="text-zinc-600 dark:text-zinc-400 text-base mb-8 leading-relaxed max-w-sm mx-auto">
+              We encountered an issue while sending your request. Please check your internet connection and try again.
+            </p>
+            
+            {/* Action button */}
+            <button
+              onClick={() => setFormStatus('idle')}
+              style={{ backgroundColor: '#18181b', color: '#ffffff', border: 'none' }}
+              className="w-full py-4 px-6 rounded-2xl bg-zinc-800 hover:bg-zinc-900 active:bg-zinc-950 text-white font-bold text-lg shadow-lg shadow-zinc-800/10 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              Try again
+            </button>
+            
+            {/* Close button icon in top right */}
+            <button
+              onClick={() => setFormStatus('idle')}
+              style={{ background: 'transparent', border: 'none' }}
+              className="absolute top-4 right-4 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
         </div>
       )}
