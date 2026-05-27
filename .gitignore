@@ -43,3 +43,5 @@ next-env.d.ts
 # old site source
 /old/
 
+/.ssh/
+/.vscode/
