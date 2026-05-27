@@ -88,8 +88,56 @@ export default function Home() {
     }
   };
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "Handy&Man Handyman Services",
+    "image": "https://handytx.com/assets/images/about/17.jpg",
+    "@id": "https://handytx.com/#business",
+    "url": "https://handytx.com",
+    "telephone": "+14694527454",
+    "email": "birvuni@gmail.com",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "701 Peterhouse Dr",
+      "addressLocality": "McKinney",
+      "addressRegion": "TX",
+      "postalCode": "75071",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 33.179566,
+      "longitude": -96.772999
+    },
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "McKinney" },
+      { "@type": "AdministrativeArea", "name": "Frisco" },
+      { "@type": "AdministrativeArea", "name": "Allen" },
+      { "@type": "AdministrativeArea", "name": "Plano" },
+      { "@type": "AdministrativeArea", "name": "Dallas" },
+      { "@type": "AdministrativeArea", "name": "Collin County" }
+    ],
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+      ],
+      "opens": "09:00",
+      "closes": "19:00"
+    },
+    "sameAs": [
+      "https://www.youtube.com/@MeVova"
+    ]
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
       {/* header style two */}
       <header id="home" className="rts-header-area header-one">
         <div className="container">

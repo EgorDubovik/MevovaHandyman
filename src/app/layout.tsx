@@ -3,11 +3,63 @@ import Script from 'next/script';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Handy&Man Handyman services',
-  description: 'Professional Handyman Services. Quality is our priority!',
+  metadataBase: new URL('https://handytx.com'),
+  title: 'Handy&Man | Professional Handyman Services in McKinney & Frisco, TX',
+  description: 'Professional handyman services in McKinney, Frisco, Allen, Plano, and DFW. We specialize in home repair, electrical, plumbing, door installation, TV mounting, and furniture assembly. Reliable, punctual, and quality guaranteed!',
+  keywords: [
+    'Handyman McKinney TX',
+    'Handyman Frisco TX',
+    'local handyman DFW',
+    'home repair McKinney',
+    'furniture assembly McKinney',
+    'TV mounting Frisco',
+    'door installation Collin County',
+    'plumbing repairs McKinney',
+    'electrical repairs Frisco',
+    'home maintenance Texas'
+  ],
   icons: {
     icon: '/assets/images/fav.png',
     shortcut: '/assets/images/fav.png',
+  },
+  alternates: {
+    canonical: 'https://handytx.com',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    title: 'Handy&Man | Professional Handyman Services in McKinney & Frisco, TX',
+    description: 'Looking for a reliable local handyman in Collin County? We offer professional home repair, furniture assembly, TV mounting, plumbing, and electrical services. Satisfaction guaranteed!',
+    url: 'https://handytx.com',
+    siteName: 'Handy&Man Handyman Services',
+    locale: 'en_US',
+    type: 'website',
+    images: [
+      {
+        url: '/assets/images/about/17.jpg',
+        width: 800,
+        height: 600,
+        alt: 'Handy&Man Handyman Services McKinney Texas',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Handy&Man | Professional Handyman Services in McKinney & Frisco, TX',
+    description: 'Reliable local handyman in McKinney, Frisco, DFW. Home repair, assembly, mounting, plumbing, and electrical. Call +1 (469) 452-7454!',
+    images: ['/assets/images/about/17.jpg'],
+  },
+  verification: {
+    google: 'G-153HX59QFZ',
   },
 };
 
