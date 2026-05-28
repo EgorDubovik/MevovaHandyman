@@ -57,9 +57,11 @@ ssh -i "$SSH_KEY" -p "$SSH_PORT" -o StrictHostKeyChecking=accept-new "$SSH_USER@
     echo 'Connected to server.' && \
     if [ -d \"$REMOTE_DIR\" ]; then \
         cd \"$REMOTE_DIR\" && \
-        echo 'Pulling latest changes in '\$(pwd) && \
-        git pull origin \"$CURRENT_BRANCH\" && \
-        echo '✅ Remote git pull successful!' && \
+        echo 'Fetching latest changes...' && \
+        git fetch origin "$CURRENT_BRANCH" && \
+        echo 'Resetting working tree to origin/'"$CURRENT_BRANCH"'...' && \
+        git reset --hard origin/"$CURRENT_BRANCH" && \
+        echo '✅ Remote git sync successful!' && \
         
         echo 'Docker: Rebuilding and restarting containers...' && \
         docker compose up -d --build && \
