@@ -59,12 +59,13 @@ ssh -i "$SSH_KEY" -p "$SSH_PORT" -o StrictHostKeyChecking=accept-new "$SSH_USER@
         cd \"$REMOTE_DIR\" && \
         echo 'Pulling latest changes in '\$(pwd) && \
         git pull origin \"$CURRENT_BRANCH\" && \
-        echo '✅ Remote git pull successful!'; \
+        echo '✅ Remote git pull successful!' && \
         
-        # Optional: Uncomment and modify these steps if you want automated production builds on the server:
-        # echo 'Installing dependencies...' && npm ci && \
-        # echo 'Building application...' && npm run build && \
-        # echo 'Restarting process...' && pm2 restart next-app || pm2 start npm --name next-app -- start;
+        echo 'Docker: Rebuilding and restarting containers...' && \
+        docker compose up -d --build && \
+        echo 'Docker: Pruning unused images...' && \
+        docker image prune -f && \
+        echo '✅ Remote deployment via Docker successful!';
     else \
         echo '❌ Error: Remote directory $REMOTE_DIR does not exist. Please update REMOTE_DIR in deploy.sh.'; \
         exit 1; \

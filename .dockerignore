@@ -1,0 +1,25 @@
+# Dependencies and build outputs
+node_modules
+.next
+old
+
+# Git and IDE configurations
+.git
+.gitignore
+.vscode
+.ssh
+
+# Environment files
+.env*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Documentation & script files
+*.md
+deploy.sh
+Dockerfile
+docker-compose.yml
